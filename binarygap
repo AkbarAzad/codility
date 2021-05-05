@@ -1,4 +1,4 @@
-def binary_search(N):
+def binary_gap(N):
     # Convert one digit to binary
     def int_to_binary(N):
         quotient = int(N/2)
