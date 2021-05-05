@@ -19,7 +19,29 @@ def binary_gap(N):
             N_new = quotient
         binary = ''.join(binary_list)
         return binary
-    # Count number of consecutive zeros
+    # Correct conversion from integer to binary
+    def number_to_binary(N):
+        binary_list = []
+        N_new = N
+        quotient = int(N_new/2)
+        binary = 1 if N_new % 2 > 0 else 0
+        #print(f"N_new: {N_new}, quotient: {quotient}, binary: {binary}")
+        binary_list.append(str(binary))
+        while quotient > 0:
+            N_new = quotient
+            quotient = int(N_new/2)
+            binary = 1 if N_new % 2 > 0 else 0
+            #print(f"N_new: {N_new}, quotient: {quotient}, binary: {binary}")
+            binary_list.append(str(binary))
+        # Sort in reverse order
+        binary_sort = []
+        for i in range((len(binary_list))-1, -1, -1):
+            binary_sort.append(binary_list[i])
+        # Unlist
+        binary_unlist = ''.join(binary_sort)
+        # Output
+        return binary_unlist
+        # Count number of consecutive zeros
     def binary_count(binary):
         counting = 0
         for i in range(0, len(binary)):
@@ -28,8 +50,22 @@ def binary_gap(N):
                 counting_zero = counting
             else:
                 counting = 0
-        return counting_zero
+        try:
+            return counting_zero
+        except:
+            return 0
+    def binary_length(binary):
+        gap_list = []
+        counting = 0
+        for i in binary:
+            if i == '0':
+                counting += 1
+            else:
+                gap_list.append(counting)
+                counting = 0
+        return max(gap_list)
     # Perform binary search
-    binary = int_to_binary_loop(N)
-    counting = binary_count(binary)
+    #binary = int_to_binary_loop(N)
+    binary = number_to_binary(N)
+    counting = binary_length(binary)
     return counting
