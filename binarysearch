@@ -1,0 +1,35 @@
+def binary_search(N):
+    # Convert one digit to binary
+    def int_to_binary(N):
+        quotient = int(N/2)
+        remainder = N % 2
+        return quotient, remainder
+    # Convert number to binary
+    def int_to_binary_loop(N):
+        binary_list = []
+        N_new = N
+        quotient, remainder = int_to_binary(N_new)
+        binary_list.append(str(remainder))
+        #print(f"{quotient}, {remainder}")
+        while quotient > 0:
+            N_new = quotient
+            quotient, remainder = int_to_binary(N_new)
+            binary_list.append(str(remainder))
+            #print(f"{quotient}, {remainder}")
+            N_new = quotient
+        binary = ''.join(binary_list)
+        return binary
+    # Count number of consecutive zeros
+    def binary_count(binary):
+        counting = 0
+        for i in range(0, len(binary)):
+            if binary[i] == '0':
+                counting += 1
+                counting_zero = counting
+            else:
+                counting = 0
+        return counting_zero
+    # Perform binary search
+    binary = int_to_binary_loop(N)
+    counting = binary_count(binary)
+    return counting
