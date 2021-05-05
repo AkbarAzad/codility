@@ -1,0 +1,9 @@
+def cyclic_rotation(A, K):
+    A2 = A.copy()
+    N = len(A)
+    for i in range(N):
+        new_i = i + K
+        if new_i >= K:
+            new_i = new_i % N
+        A2[new_i] = A[i]
+    return A2
