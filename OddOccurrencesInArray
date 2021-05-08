@@ -1,0 +1,15 @@
+def odd_occurrences_in_array(A):
+    N = len(A)
+    A2 = A.copy()
+    B = set(A2)
+    B2 = list(B)
+    for i in B2:
+        A2 = [j for j in A2 if j != i]
+        N2 = len(A2)
+        # Check difference in lengths
+        N_diff = N - N2
+        #print(A2)
+        if N_diff % 2 == 1:
+            return i
+            break
+    return None
